@@ -7,17 +7,14 @@ Un programa para encontrar el cuadrado de un número.
 
 # TODO Tarea 1:
 # Crea una variable llamada 'cuadrado' y asígnale el valor del cuadrado de 'num'.
-"""
-cuadrado = num ** 2
 
-Código1:
-Un programa para encontrar el cuadrado de un número.
-"""
 
+#cuadrado = num ** 2
 # Definir una variable llamada 'num' y asignarle el valor 4
 num = 4
-
+cuadrado = num ** 2
 # Mostrar el resultado
+print(cuadrado)
 print("cuadrado")
 
 # Salida esperada:
