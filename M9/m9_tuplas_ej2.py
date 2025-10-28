@@ -21,9 +21,16 @@ def tupla_no_hashable():
     # TODO: Añade el número 6 al final de la segunda lista (list1) usando t
     # Resultado esperado: ([1, 2, 3], [4, 5, 6])
 
+    t[1].append(6)
+    print("Tupla modificada:", t)  # ([1, 2, 3], [4, 5, 6])
+
     # TODO: Intenta usar la tupla t como clave en un diccionario y captura el error con try-except
     # Debes imprimir un mensaje que diga que no se puede usar como clave si ocurre un TypeError
-    pass
+
+    try:
+        d = {t: "valor"}
+    except TypeError:
+        print("❌ No se puede usar la tupla como clave porque contiene listas (no son hashables).")
 
 
 # ============================
@@ -41,17 +48,28 @@ def shift_word(word, shift):
     """
     # TODO: Implementa el cifrado César aquí
     # Tip: Usa letter_map y operador % para hacer el desplazamiento circular
+
     letters = 'abcdefghijklmnopqrstuvwxyzáéíóúñ '
     letter_map = dict(zip(letters, range(len(letters))))
     reverse_map = dict(zip(range(len(letters)), letters))
     result = []
 
     # Recorre cada letra y aplícale el desplazamiento
+
     for letter in word:
+        if letter in letter_map:
+            original_index = letter_map[letter]
+            shifted_index = (original_index + shift) % len(letters)
+            result.append(reverse_map[shifted_index])
+        else:
+            # Si el carácter no está en el alfabeto, lo dejamos igual
+
         # TODO: Maneja letras no reconocidas (espacios, tildes, etc.)
-        pass
+
+            result.append(letter)
 
     # Une la lista resultante en una cadena
+
     return ''.join(result)
 
 
@@ -65,7 +83,21 @@ def most_frequent_letters(texto):
     """
     # TODO: Cuenta las letras ignorando espacios y ordena por frecuencia
     # Tip: Usa value_counts() del ejercicio anterior si lo tienes
-    pass
+
+    from collections import Counter
+
+    # Eliminar espacios y convertir a minúsculas
+    limpio = texto.replace(" ", "").lower()
+
+    # Contar letras
+    contador = Counter(limpio)
+
+    # Ordenar por frecuencia descendente
+    letras_ordenadas = sorted(contador.items(), key=lambda x: x[1], reverse=True)
+
+    # Mostrar resultados
+    for letra, frecuencia in letras_ordenadas:
+        print(f"{letra}: {frecuencia}")
 
 
 # ============================
@@ -81,8 +113,21 @@ def encontrar_anagramas(lista_palabras):
     ['retainers', 'ternaries']
     """
     # TODO: Crea un diccionario que relacione la palabra ordenada con sus anagramas
-    pass
 
+    from collections import defaultdict
+
+    # Diccionario para agrupar palabras por sus letras ordenadas
+    grupos = defaultdict(list)
+
+    for palabra in lista_palabras:
+        clave = ''.join(sorted(palabra))
+        grupos[clave].append(palabra)
+
+    # Imprimir solo los grupos que tienen más de una palabra (es decir, son anagramas)
+    for grupo in grupos.values():
+        if len(grupo) > 1:
+            print(grupo)
+    
 
 # ============================
 # EJERCICIO 5: Distancia entre palabras
@@ -96,7 +141,8 @@ def word_distance(word1, word2):
     word_distance("casa", "cata") -> 1
     """
     # TODO: Usa zip para comparar letra por letra y contar diferencias
-    pass
+    
+    return sum(1 for a, b in zip(word1, word2) if a != b)
 
 
 # ============================
@@ -114,7 +160,24 @@ def encontrar_metatesis(lista_palabras):
     # 1. Encuentra anagramas usando el mismo enfoque del ejercicio anterior
     # 2. Para cada par en cada grupo de anagramas, verifica si son pares de metátesis
     #    (solo deben diferir en exactamente dos letras y ser del mismo largo)
-    pass
+    
+    from collections import defaultdict
+    from itertools import combinations
+
+    # Paso 1: Agrupar palabras por sus letras ordenadas (anagramas)
+    grupos = defaultdict(list)
+    for palabra in lista_palabras:
+        clave = ''.join(sorted(palabra))
+        grupos[clave].append(palabra)
+
+    # Paso 2: Verificar pares de metátesis
+    for grupo in grupos.values():
+        if len(grupo) > 1:
+            for w1, w2 in combinations(grupo, 2):
+                if len(w1) == len(w2):
+                    diferencias = [(a, b) for a, b in zip(w1, w2) if a != b]
+                    if len(diferencias) == 2 and diferencias[0] == diferencias[1][::-1]:
+                        print((w1, w2))
 
 
 # ============================

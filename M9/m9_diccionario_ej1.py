@@ -23,7 +23,8 @@ def duplicados(seq):
     duplicados('llama') -> True  #si tiene letras duplicadas
     """
     # TODO: Termina la funcion
-    pass
+    
+    return len(set(seq)) != len(seq)
 
 
 # ============================
@@ -42,7 +43,8 @@ def encontrar_repeticiones(counter):
     encontrar_repeticiones({'a': 2, 'b': 1, 'c': 3}) -> ['a', 'c']
     """
     # TODO: Termina la funcion
-    return []
+
+    return [clave for clave, valor in test_counter.items() if valor > 1]
 
 
 # ============================
@@ -63,7 +65,11 @@ def suma_counters(dict1, dict2):
     sumando_counters(dict1, dict2) -> {'a': 3, 'b': 1, 'c': 4}
     """
     # TODO: Termina la funcion
-    pass
+
+    resultado = dict1.copy()
+    for clave, valor in dict2.items():
+        resultado[clave] = resultado.get(clave, 0) + valor
+    return resultado
 
 
 # ============================
@@ -86,7 +92,9 @@ def is_interlocking(word, word_list):
     Tip: Usa word[::2] y word[1::2] para obtener las dos mitades entrelazadas.
     """
    
-    pass
+    parte1 = word[::2]
+    parte2 = word[1::2]
+    return parte1 in word_list and parte2 in word_list
 
 
 # ============================
@@ -112,6 +120,8 @@ def contar_valores(word):
             counter[letter] = 1
     return counter
 
+print(contar_valores('banana'))  # {'b': 1, 'a': 3, 'n': 2}
+
 
 # ============================
 # PRUEBAS
@@ -125,13 +135,14 @@ if __name__ == '__main__':
     print(duplicados('llama'))       # True
 
     print("\n--- Pruebas de find_repeats ---")
-    test_counter = encontrar_repeticiones('banana')
-    print(test_counter)  # {'b': 1, 'a': 3, 'n': 2}
-    print(encontrar_repeticiones(test_counter))    # ['a', 'n']
+    test_counter = contar_valores('banana')
+    test_counter = contar_valores('banana')  # {'b': 1, 'a': 3, 'n': 2}
+    print(encontrar_repeticiones(test_counter))  # ['a', 'n']
+
 
     print("\n--- Pruebas de add_counters ---")
-    c1 = encontrar_repeticiones('brontosaurios')
-    c2 = encontrar_repeticiones('apatosaurios')
+    c1 = contar_valores('brontosaurios')
+    c2 = contar_valores('apatosaurios')
     print(suma_counters(c1, c2))
 
     print("\n--- Pruebas de is_interlocking ---")
