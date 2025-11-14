@@ -22,8 +22,8 @@ class Circulo:
         self.radio = radio
 
     def dibujar(self):
-        # TODO: Imprime un mensaje describiendo el círculo.
-        print(f"Dibujando un círculo de radio {self.radio}")
+        """Imprime un mensaje describiendo el círculo."""
+        print(f"Dibujando un círculo de radio {self.radio} unidades.")
 
 
 class Rectangulo:
@@ -32,8 +32,8 @@ class Rectangulo:
         self.alto = alto
 
     def dibujar(self):
-        # TODO: Imprime un mensaje describiendo el rectángulo.
-        print(f"Dibujando un rectángulo de ancho {self.ancho} y alto {self.alto}")
+        """Imprime un mensaje describiendo el rectángulo."""
+        print(f"Dibujando un rectángulo de {self.ancho}x{self.alto} unidades.")
 
 
 class Triangulo:
@@ -42,8 +42,8 @@ class Triangulo:
         self.altura = altura
 
     def dibujar(self):
-        # TODO: Imprime un mensaje describiendo el triángulo.
-        print(f"Dibujando un triángulo de base {self.base} y altura {self.altura}")
+        """Imprime un mensaje describiendo el triángulo."""
+        print(f"Dibujando un triángulo de base {self.base} y altura {self.altura} unidades.")
 
 
 # --- Bloque para probar tus clases ---
@@ -61,4 +61,3 @@ if __name__ == "__main__":
     # que tenga ese método, sin importar si es un Círculo, Rectángulo o Triángulo.
     for forma in formas:
         forma.dibujar()
-

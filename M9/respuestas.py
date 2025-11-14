@@ -3,7 +3,7 @@ PROYECTO DE PROGRAMACIÓN: Funciones con cadenas, listas y diccionarios
 
 Instrucciones:
 Este archivo contiene varias tareas relacionadas con el uso de cadenas, listas y diccionarios.
-Completa las tareas, terminando los cinco TODO.
+Completa las tareas, terminando los tres TODO.
 
 Puedes probar tus funciones utilizando el bloque "if __name__ == '__main__':" al final del archivo.
 """
@@ -22,8 +22,7 @@ def duplicados(seq):
     duplicados('hola') -> False #no tiene letras duplicadas
     duplicados('llama') -> True  #si tiene letras duplicadas
     """
-    # TODO: Termina la funcion
-    pass
+    return len(seq) != len(set(seq))
 
 
 # ============================
@@ -41,8 +40,13 @@ def encontrar_repeticiones(counter):
     Ejemplo:
     encontrar_repeticiones({'a': 2, 'b': 1, 'c': 3}) -> ['a', 'c']
     """
-    # TODO: Termina la funcion
-    return []
+    # Si el parámetro es una cadena, primero lo convertimos en un contador
+    if isinstance(counter, str):
+        counter = contar_valores(counter)
+
+    # Devolvemos las claves con valor mayor que 1
+    return [clave for clave, valor in counter.items() if valor > 1]
+
 
 
 # ============================
@@ -62,8 +66,10 @@ def suma_counters(dict1, dict2):
     dict2 = {'a': 1, 'c': 4}
     sumando_counters(dict1, dict2) -> {'a': 3, 'b': 1, 'c': 4}
     """
-    # TODO: Termina la funcion
-    pass
+    result = dict(dict1)  # copiamos el primero para no modificarlo
+    for clave, valor in dict2.items():
+        result[clave] = result.get(clave, 0) + valor
+    return result
 
 
 # ============================
@@ -86,7 +92,10 @@ def is_interlocking(word, word_list):
     Tip: Usa word[::2] y word[1::2] para obtener las dos mitades entrelazadas.
     """
    
-    pass
+    palabra1 = word[::2]
+    palabra2 = word[1::2]
+    return palabra1 in word_list and palabra2 in word_list
+
 
 
 # ============================
@@ -104,16 +113,13 @@ def contar_valores(word):
     Ejemplo:
     contar_valores('banana') -> {'b':1, 'a':3, 'n':2}
     """
-    #TODO Agregar un diccionario vacio llamado counter:
-
+    counter = {}
     for letter in word:
         if letter in counter:
             counter[letter] += 1
         else:
             counter[letter] = 1
     return counter
-
-print(contar_valores('banana'))  # {'b': 1, 'a': 3, 'n': 2}
 
 
 # ============================
@@ -130,15 +136,16 @@ if __name__ == '__main__':
     print(duplicados([1, 2, 2]))     # True
 
 
-    print("\n--- Pruebas de find_repeats ---")
-    test_counter = encontrar_repeticiones('banana')
+    print("\n--- Pruebas de encontrar_repeticiones ---")
+    test_counter = contar_valores('banana')
     print(test_counter)  # {'b': 1, 'a': 3, 'n': 2}
     print(encontrar_repeticiones(test_counter))    # ['a', 'n']
+    print(encontrar_repeticiones('banana'))        # ['a', 'n']
 
-    print("\n--- Pruebas de add_counters ---")
-    c1 = encontrar_repeticiones('brontosaurios')
-    c2 = encontrar_repeticiones('apatosaurios')
-    print(suma_counters(c1, c2))
+    print("\n--- Pruebas de suma_counters ---")
+    c1 = contar_valores('brontosaurios')
+    c2 = contar_valores('apatosaurios')
+    print(suma_counters(c1, c2))  # suma de ambos diccionarios
 
     print("\n--- Pruebas de is_interlocking ---")
     diccionario = {'es', 'colar', 'izado', 'zapato', 'frío', 'pato', 'cielo', 'dado'}
