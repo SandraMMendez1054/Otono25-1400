@@ -32,17 +32,21 @@ def formatear_nombre_usuario(nombre):
     nombre_limpio = nombre.strip()
 
     # TODO: Paso 2. Convierte la cadena a minúsculas.
-    nombre_final =  # Usa .lower() en la cadena ya limpia.
+    nombre_final =  nombre_limpio.lower()
 
     # TODO: Paso 3. Comprueba si la cadena final contiene solo letras.
     # if nombre_final.isalpha() ...:
+    if nombre_final.isalpha():
+        
     # TODO: Paso 4. Si es válido, devuelve el nombre_final.
     # return ...
     # else:
+        return nombre_final
+    else:
+        
     # TODO: Paso 5. Si no es válido, devuelve un mensaje de error.
-    return "Error: el nombre de usuario solo puede contener letras."
-
-
+        return "Error: el nombre de usuario solo puede contener letras."  
+     
 # --- Bloque para probar tu función ---
 if __name__ == "__main__":
     test1 = "  UsuarioUno  "

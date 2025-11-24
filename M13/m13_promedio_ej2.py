@@ -35,23 +35,31 @@ def promedio_de_archivo(nombre_archivo):
     try:
         # TODO: Paso 2. Abre el archivo en modo lectura ('r').
         # with open(...) as archivo:
+        with open(nombre_archivo, "r") as archivo:
+
         # TODO: Paso 3. Lee todas las líneas del archivo.
         # lineas = archivo.readlines()
+            lineas = archivo.readlines()
 
         puntajes = []
         # TODO: Paso 4. Itera sobre cada línea, conviértela a entero
         # y añádela a la lista `puntajes`.
         # for linea in lineas:
         #     puntajes.append(int(linea.strip()))
+        for linea in lineas:
+            puntajes.append(int(linea.strip()))
 
         # TODO: Paso 5. Si la lista de puntajes está vacía, devuelve 0.0.
         # if not puntajes:
         #     return 0.0
+        if not puntajes:
+            return 0.0
 
         # TODO: Paso 6. Calcula la suma y el promedio.
         # promedio = sum(puntajes) / len(puntajes)
         # return promedio
-        pass  # Borra este pass
+        promedio = sum(puntajes) / len(puntajes)
+        return promedio
 
     # TODO: Paso 7. Captura la excepción si el archivo no se encuentra.
     except FileNotFoundError:

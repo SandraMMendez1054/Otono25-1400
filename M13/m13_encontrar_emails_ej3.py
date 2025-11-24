@@ -35,10 +35,10 @@ def encontrar_emails(texto):
             Devuelve una lista vacía si no se encuentra ninguno.
     """
     # TODO: Paso 2. Define el patrón de expresión regular para un email.
-    patron =  # Escribe aquí el patrón de regex
+    patron =  r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
 
     # TODO: Paso 3. Usa re.findall() para encontrar todas las coincidencias.
-    emails_encontrados =  # Escribe aquí la llamada a re.findall()
+    emails_encontrados =  re.findall(patron, texto)
 
     # TODO: Paso 4. Devuelve la lista de emails encontrados.
     return emails_encontrados
